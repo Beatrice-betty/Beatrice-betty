@@ -175,12 +175,6 @@
   </a>
 </p>
 
-<p align="center">
-  <a href="https://afdian.com/a/Beatrice-betty">
-    <img src="./assets/afdian-card.jpg" alt="爱发电主页二维码" width="200" />
-  </a>
-</p>
-
 ---
 
 <p align="center">

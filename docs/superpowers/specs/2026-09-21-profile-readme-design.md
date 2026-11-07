@@ -56,7 +56,6 @@ Beatrice-betty/
 ├── .gitignore
 ├── assets/
 │   ├── afdian-button.svg           赞助按钮
-│   ├── afdian-card.jpg             爱发电主页二维码卡片
 │   ├── contribution-bar-light.svg  贡献强度条 · 亮色（Actions 自动刷新）
 │   └── contribution-bar-dark.svg   贡献强度条 · 暗色（Actions 自动刷新）
 ├── scripts/
@@ -132,8 +131,7 @@ GitHub 仅当存在与用户名完全相同的**公开**仓库时，才将其 RE
 - 平台选爱发电，主页 `https://afdian.com/a/Beatrice-betty`。
 - 自绘 `assets/afdian-button.svg`：爱发电紫 `#946ce6`、底色阴影 `#7c56cf`、白色咖啡杯图标，
   文案「爱发电 · 请我喝咖啡」，尺寸 272×56。
-- `assets/afdian-card.jpg`：爱发电官方个人主页二维码卡片，README 中宽度 200，点击同样跳转主页。
-- 两处入口都带 `alt`，二维码卡片兼作手机上扫码直达。
+- 按钮整体包在 `<a>` 内，点击直接跳转主页；`alt` 写清动作，读屏与图片加载失败时可读。
 
 ### 维护方式
 
