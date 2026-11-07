@@ -9,9 +9,9 @@ Data sources, tried in order:
   1. https://github-contributions-api.jogruber.de  (JSON mirror, gives counts)
   2. https://github.com/users/<user>/contributions (GitHub's own calendar)
 
-Both the light and the dark variant land in assets/. If every source fails the
-script leaves the existing files alone and exits 0, so a scheduled run never
-breaks the page or wipes a bar that is already there.
+Both the light and the dark variant land in BAR_OUT_DIR (default: assets/). If
+every source fails the script leaves the existing files alone and exits 0, so a
+scheduled run never breaks the page or wipes a bar that is already there.
 """
 
 from __future__ import annotations
@@ -24,7 +24,7 @@ import urllib.request
 from datetime import date
 
 USER = os.environ.get("GITHUB_USER", "Beatrice-betty")
-ASSET_DIR = "assets"
+ASSET_DIR = os.environ.get("BAR_OUT_DIR", "assets")
 BAR_WIDTH = 830
 BAR_HEIGHT = 10
 GAP = 3

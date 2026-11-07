@@ -1,0 +1,83 @@
+name: Contribution graphics
+
+on:
+  schedule:
+    - cron: "10 0 * * *"
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - "scripts/contribution_bar.py"
+      - ".github/workflows/contribution-graphics.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: contribution-graphics
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Prepare the staging directory
+        run: mkdir -p dist/assets
+
+      - name: Render the weekly bar
+        env:
+          GITHUB_USER: ${{ github.repository_owner }}
+          BAR_OUT_DIR: dist/assets
+        run: python3 scripts/contribution_bar.py
+
+      - name: Render the snake animation
+        uses: Platane/snk/svg-only@v3
+        with:
+          github_user_name: ${{ github.repository_owner }}
+          outputs: |
+            dist/assets/github-contribution-grid-snake.svg?color_snake=#7c3aed
+            dist/assets/github-contribution-grid-snake-dark.svg?palette=github-dark&color_snake=#a78bfa
+
+      - name: Publish to the output branch
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          rm -rf .publish
+          mkdir .publish
+          cd .publish
+          git init -q
+          git remote add origin "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+
+          # Recreate the branch when it is missing, so deleting it can never
+          # leave the profile page pointing at a 404.
+          if git fetch --depth=1 origin output; then
+            git reset --hard FETCH_HEAD
+          else
+            echo "output branch is gone, starting a fresh one"
+            git checkout -q --orphan output
+          fi
+
+          # Copy over the previous commit, so a partial failure keeps the last
+          # good graphics instead of wiping the strip.
+          mkdir -p assets
+          shopt -s nullglob
+          fresh=(../dist/assets/*.svg)
+          if [ ${#fresh[@]} -gt 0 ]; then
+            cp -f "${fresh[@]}" assets/
+          fi
+          git add -A
+          if git diff --cached --quiet; then
+            echo "graphics are already current"
+            exit 0
+          fi
+          git commit -q -m "chore: refresh contribution graphics"
+          git push origin HEAD:output || git push --force origin HEAD:output
