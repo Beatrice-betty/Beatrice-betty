@@ -4,6 +4,9 @@
   All image services verified reachable from mainland China (2026-09-21).
   Avoided: github-readme-stats / trophy / activity-graph (over free quota),
            komarev.com/ghpvc (unreachable).
+  Contribution snake and contribution bar are rendered in-repo by GitHub
+  Actions (output branch + assets/), so the page has no third-party runtime
+  dependency for them.
 ================================================================================
 -->
 
@@ -138,6 +141,44 @@
 
 <p align="center">
   <em>重复的事情，就该交给机器。</em>
+</p>
+
+---
+
+# 🐍 Contribution Snake
+
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Beatrice-betty/Beatrice-betty/output/github-contribution-grid-snake-dark.svg" />
+    <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/Beatrice-betty/Beatrice-betty/output/github-contribution-grid-snake.svg" />
+    <img src="https://raw.githubusercontent.com/Beatrice-betty/Beatrice-betty/output/github-contribution-grid-snake-dark.svg" alt="贡献贪吃蛇" width="830" />
+  </picture>
+</p>
+
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="./assets/contribution-bar-dark.svg" />
+    <source media="(prefers-color-scheme: light)" srcset="./assets/contribution-bar-light.svg" />
+    <img src="./assets/contribution-bar-light.svg" alt="过去一年每周贡献强度" width="830" />
+  </picture>
+</p>
+
+---
+
+# ☕ Support
+
+如果这里的工具替你省下了时间，一杯咖啡的钱能让这些项目继续跑下去。
+
+<p align="center">
+  <a href="https://afdian.com/a/Beatrice-betty">
+    <img src="./assets/afdian-button.svg" alt="爱发电 · 请我喝咖啡" height="56" />
+  </a>
+</p>
+
+<p align="center">
+  <a href="https://afdian.com/a/Beatrice-betty">
+    <img src="./assets/afdian-card.jpg" alt="爱发电主页二维码" width="200" />
+  </a>
 </p>
 
 ---

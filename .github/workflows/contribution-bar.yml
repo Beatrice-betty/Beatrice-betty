@@ -1,0 +1,44 @@
+name: Contribution bar
+
+on:
+  schedule:
+    - cron: "40 0 * * *"
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - "scripts/contribution_bar.py"
+      - ".github/workflows/contribution-bar.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: contribution-bar
+  cancel-in-progress: true
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Render the bar
+        env:
+          GITHUB_USER: ${{ github.repository_owner }}
+        run: python3 scripts/contribution_bar.py
+
+      - name: Commit when the shades changed
+        run: |
+          if [ -z "$(git status --porcelain assets)" ]; then
+            echo "bar is already current"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets
+          git commit -m "chore: refresh contribution bar"
+          git push
