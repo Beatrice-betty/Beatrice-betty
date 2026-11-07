@@ -149,9 +149,9 @@
 
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Beatrice-betty/Beatrice-betty/output/github-contribution-grid-snake-dark.svg" />
-    <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/Beatrice-betty/Beatrice-betty/output/github-contribution-grid-snake.svg" />
-    <img src="https://raw.githubusercontent.com/Beatrice-betty/Beatrice-betty/output/github-contribution-grid-snake-dark.svg" alt="贡献贪吃蛇" width="830" />
+    <source media="(prefers-color-scheme: dark)" srcset="./assets/github-contribution-grid-snake-dark.svg" />
+    <source media="(prefers-color-scheme: light)" srcset="./assets/github-contribution-grid-snake.svg" />
+    <img src="./assets/github-contribution-grid-snake.svg" alt="贡献贪吃蛇" width="830" />
   </picture>
 </p>
 
