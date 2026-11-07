@@ -174,9 +174,3 @@
     <img src="./assets/afdian-button.svg" alt="爱发电 · 请我喝咖啡" height="56" />
   </a>
 </p>
-
----
-
-<p align="center">
-  <sub>主页构建：<a href="./docs/superpowers/specs/2026-09-21-profile-readme-design.md">设计文档</a> · 所有图片服务的国内可达性均已实测</sub>
-</p>
